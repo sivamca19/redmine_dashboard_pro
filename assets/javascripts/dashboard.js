@@ -4,7 +4,7 @@ var Dashboard = {
   init: function(data) {
     this.data = data;
     this.initCharts();
-    this.bindEvents();
+    // this.bindEvents();
     console.log('Dashboard initialized for:', data.project);
   },
   
@@ -188,8 +188,14 @@ var Dashboard = {
     }
     
     this.showLoading();
-    
-    fetch(url)
+    fetch(url, {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+    })
       .then(response => response.json())
       .then(data => {
         console.log("data", data)
@@ -347,6 +353,15 @@ var Dashboard = {
     if (diffInSeconds < 86400) return Math.floor(diffInSeconds / 3600) + ' hours';
     if (diffInSeconds < 2592000) return Math.floor(diffInSeconds / 86400) + ' days';
     return Math.floor(diffInSeconds / 2592000) + ' months';
+  },
+  exportData: function(format) {
+    var projectId = document.getElementById('project_id').value;
+    var url = '/dashboard/export.' + format;
+    if (projectId && projectId !== '') {
+      url += '?project_id=' + projectId;
+    }
+
+    window.open(url, '_blank');
   }
 };
 

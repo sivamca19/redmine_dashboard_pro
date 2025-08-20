@@ -8,8 +8,6 @@ body.controller-dashboard #main-menu ul {
 }
 
 .dashboard-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
   background: white;
@@ -23,6 +21,13 @@ body.controller-dashboard #main-menu ul {
   color: #2c3e50;
 }
 
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
 .project-selector {
   display: flex;
   align-items: center;
@@ -32,6 +37,7 @@ body.controller-dashboard #main-menu ul {
 .project-selector label {
   font-weight: bold;
   color: #34495e;
+  display: inline !important;
 }
 
 .project-select {
@@ -40,6 +46,64 @@ body.controller-dashboard #main-menu ul {
   border-radius: 4px;
   background: white !important;
   min-width: 200px;
+}
+
+.export-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.export-dropdown-btn {
+  padding: 8px 16px;
+  border: 1px solid #3498db;
+  background: white;
+  color: #3498db;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.export-dropdown-btn:hover {
+  background: #3498db;
+  color: white;
+}
+
+.export-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  min-width: 130px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.export-dropdown:hover .export-dropdown-content {
+  display: block;
+}
+
+.export-dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: #34495e !important;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.export-dropdown-item:hover {
+  background: #f8f9fa;
+  text-decoration: none;
 }
 
 /* Overview Cards */
@@ -434,6 +498,16 @@ canvas {
     gap: 15px;
     text-align: center;
   }
+
+  .header-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .export-btn {
+    width: 100%;
+    text-align: center;
+  }
   
   .overview-cards {
     grid-template-columns: 1fr;
@@ -457,28 +531,19 @@ canvas {
   }
 }
 
-/* Dark mode support */
-/* @media (prefers-color-scheme: dark) {
-  .dashboard-container {
-    background: #2c3e50;
-    color: #ecf0f1;
+@media (max-width: 480px) {
+  .header-controls {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
-  
-  .widget {
-    background: #34495e;
-    color: #ecf0f1;
+
+  .project-selector,
+  .export-controls {
+    width: 100%;
+    justify-content: center;
   }
-  
-  .dashboard-header {
-    background: #34495e;
-    color: #ecf0f1;
-  }
-  
-  .issue-item:hover,
-  .activity-item:hover {
-    background: #3d5a7a;
-  }
-} */
+}
 
 /* Print Styles */
 @media print {
