@@ -1,0 +1,25 @@
+en:
+  label_dashboard: "Dashboard"
+  label_overview: "Overview"
+  label_all_projects: "All Projects"
+  label_dashboard_quick_stats: "Quick Statistics"
+  label_view_dashboard: "View Dashboard"
+  label_view_full_dashboard: "View Full Dashboard"
+  text_dashboard_description: "Get comprehensive insights into your projects, issues, and team activity."
+  
+  field_completion_rate: "Completion Rate"
+  label_issue_distribution: "Issue Distribution"
+  label_time_tracking_overview: "Time Tracking Overview"
+  label_user_activity: "User Activity"
+  label_recent_activity: "Recent Activity"
+  label_project_progress: "Project Progress"
+  label_active_users: "Active Users"
+  
+  text_no_data_available: "No data available"
+  text_loading_dashboard: "Loading dashboard data..."
+  text_dashboard_updated: "Dashboard updated"
+  text_refresh_dashboard: "Refresh Dashboard"
+  
+  button_refresh: "Refresh"
+  button_export: "Export"
+  button_switch_project: "Switch Project"
