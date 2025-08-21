@@ -1,14 +1,14 @@
-class DashboardController < ApplicationController  
+class DashboardController < ApplicationController
+  before_action :require_login_or_api_key
   before_action :find_optional_project
   before_action :authorize_global, :except => [:index, :export]
   
   def index
-    if request.format.json? || User.current.allowed_to?(:view_dashboard, nil, global: true)
+    if User.current.allowed_to?(:view_dashboard, nil, global: true)
       @current_project = @project
       @projects = Project.visible.order(:name)
       builder = DashboardDataBuilder.new(@project)
       @statistics = builder.statistics
-
       respond_to do |format|
         format.html
         format.json { render json: builder.dashboard_data }
@@ -59,5 +59,24 @@ class DashboardController < ApplicationController
   
   def find_optional_project
     @project = params[:project_id].present? ? Project.find(params[:project_id]) : nil
+  end
+
+  def require_login_or_api_key
+    if request.format.json?
+      unless User.current.logged?
+        api_key = request.headers['X-Redmine-API-Key']
+        api_key ||= params[:key]
+        if api_key.present?
+          @user = User.find_by_api_key(api_key)
+          User.current = @user if @user
+        end
+      end
+      unless User.current.logged?
+        render :json => {:error => "Authentication required"}, :status => 401
+        return false
+      end
+    else
+      require_login
+    end
   end
 end

@@ -77,7 +77,11 @@ class DashboardStatistics
   end
   
   def total_users
-    User.active.count
+    if @project.present?
+      @project.users.active.count
+    else
+      User.active.count
+    end
   end
   
   def total_time_spent

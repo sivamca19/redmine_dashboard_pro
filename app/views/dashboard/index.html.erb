@@ -96,21 +96,7 @@
       </div>
     </div>
 
-    <!-- Project Progress (if specific project selected) -->
-    <% if @current_project %>
-    <div class="widget large">
-      <h3><%= @current_project.name %> Progress</h3>
-      <div class="widget-content">
-        <% progress = @statistics.project_progress %>
-        <div class="progress-overview">
-          <p><strong>Total Issues:</strong> <%= progress[:total_issues] %></p>
-          <p><strong>Closed:</strong> <%= progress[:closed_issues] %></p>
-          <%= progress_bar(progress[:progress_percentage]) %>
-          <p><strong>Time Logged:</strong> <%= format_time_duration(progress[:estimated_hours]) %></p>
-        </div>
-      </div>
-    </div>
-    <% end %>
+    <!-- Project Progress insert dynamically -->
 
     <!-- Time Tracking -->
     <div class="widget large">
@@ -196,12 +182,14 @@
   var dashboardData = {
     project: '<%= @current_project&.name || 'All Projects' %>',
     projectId: '<%= @current_project&.id %>',
+    project_progress: <%= chart_data_to_json(@current_project ? @statistics.project_progress : nil)%>,
     issuesByStatus: <%= chart_data_to_json(@statistics.issues_by_status) %>,
     issuesByPriority: <%= chart_data_to_json(@statistics.issues_by_priority) %>,
     issuesByTracker: <%= chart_data_to_json(@statistics.issues_by_tracker) %>,
     timeByActivity: <%= chart_data_to_json(@statistics.time_by_activity) %>,
     timeByUser: <%= chart_data_to_json(@statistics.time_by_user) %>,
-    dailyTime: <%= chart_data_to_json(@statistics.daily_time_last_30_days) %>
+    dailyTime: <%= chart_data_to_json(@statistics.daily_time_last_30_days) %>,
+    apiKey: '<%= User.current.api_key %>'
   };
   
   Dashboard.init(dashboardData);
