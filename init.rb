@@ -3,8 +3,8 @@ Redmine::Plugin.register :redmine_dashboard_pro do
   author 'Sivamanikandan'
   description 'Comprehensive dashboard with insights and analytics for Redmine'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/sivamca19/redmine_dashboard_pro'
+  author_url 'https://github.com/sivamca19'
 
   # Register XLSX MIME type
   Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
