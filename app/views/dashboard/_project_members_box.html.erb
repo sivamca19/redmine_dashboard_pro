@@ -1,0 +1,8 @@
+<div class="widget">
+  <h3><%= sprite_icon('group', l(:label_member_plural)) %></h3>
+  <div class="widget-content">
+    <% @principals_by_role.keys.sort.each do |role| %>
+      <p><span class="label"><%= role %>:</span> <%= @principals_by_role[role].sort.collect{|p| link_to_principal(p, :class => p.is_a?(Group) ? 'icon icon-group' : nil)}.join(", ").html_safe %></p>
+    <% end %>
+  </div>
+</div>

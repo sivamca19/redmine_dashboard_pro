@@ -1,0 +1,28 @@
+<div class="dashboard-header">
+  <h1>Dashboard</h1>
+  <div class="header-controls">
+    <div class="project-selector">
+      <% unless params[:controller] == 'projects'%>
+        <%= form_tag dashboard_index_path, method: :get, local: true, id: 'project-selector-form' do %>
+          <%= label_tag :project_id, l(:field_project) %>
+          <%= select_tag :project_id,
+              options_for_select([['All Projects', '']] + @projects.collect{ |p| [p.name, p.id] }, @current_project&.id),
+              { onchange: 'Dashboard.switchProject(this.value)',
+                class: 'project-select' } %>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <div class="export-dropdown">
+      <div class="export-dropdown-btn">
+        <span>Export</span>
+        <span>▼</span>
+      </div>
+      <div class="export-dropdown-content">
+        <a class="export-dropdown-item" onclick="Dashboard.exportData('csv')">Export as CSV</a>
+        <a class="export-dropdown-item" onclick="Dashboard.exportData('xlsx')">Export as XLS</a>
+        <a class="export-dropdown-item" onclick="Dashboard.exportData('pdf')">Export as PDF</a>
+      </div>
+    </div>
+  </div>
+</div>

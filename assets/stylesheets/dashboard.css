@@ -567,3 +567,27 @@ canvas {
     margin-bottom: 20px;
   }
 }
+.project-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  grid-auto-rows: min-content;
+  margin-bottom: 21px;
+}
+
+.project-dashboard-grid .full {
+  grid-column: span 4;
+}
+
+.project-dashboard-grid .wide {
+  grid-column: span 2;
+}
+
+.project-dashboard-grid .medium {
+  grid-column: span 1;
+}
+
+.project-dashboard-grid svg {
+  fill: #fff;
+  stroke: #fff;
+}

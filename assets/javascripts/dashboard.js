@@ -666,3 +666,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dashboard.bindEvents();
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const grid = document.querySelector("#project-grids-wrapper");
+  if (!grid) return;
+
+  const items = grid.querySelectorAll(".widget");
+  const count = items.length;
+
+  // Reset classes
+  items.forEach(i => i.classList.remove("full", "wide", "medium"));
+
+  if (count === 1) {
+    items[0].classList.add("full");
+  } else if (count === 2) {
+    items.forEach(i => i.classList.add("wide"));
+  } else if (count === 3) {
+    grid.style.gridTemplateColumns = "repeat(3, 1fr)"; // 3 equal columns
+    items.forEach(i => i.classList.add("medium"));
+  } else {
+    grid.style.gridTemplateColumns = "repeat(4, 1fr)"; // default
+    items.forEach(i => i.classList.add("medium"));
+  }
+});

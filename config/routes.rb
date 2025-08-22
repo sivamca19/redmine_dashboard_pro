@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :dashboard, :only => [:index] do
-    collection do
-      get :export
-    end
-  end
+  get 'dashboard/export', to: 'dashboard#export', as: 'dashboard_export'
+  resources :dashboard, only: [:index]
 end

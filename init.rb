@@ -9,12 +9,14 @@ Redmine::Plugin.register :redmine_dashboard_pro do
   # Register XLSX MIME type
   Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
 
-  # Add dashboard to top menu
-  menu :top_menu, :dashboard, { :controller => 'dashboard', :action => 'index' }, 
-       :caption => :label_dashboard, :first => true
+  menu :project_menu, :dashboard, { :controller => 'dashboard', :action => 'project' },
+     :caption => :label_dashboard, :after => :activity, :param => :id
 
   # Permissions
-  project_module :dashboard_module do
+  project_module :dashboard do
     permission :view_dashboard, { :dashboard => [:index] }
   end
 end
+
+require_relative 'lib/redmine_dashboard_pro/projects_controller_patch'
+ProjectsController.send(:include, RedmineDashboardPro::ProjectsControllerPatch) unless ProjectsController.included_modules.include?(RedmineDashboardPro::ProjectsControllerPatch)

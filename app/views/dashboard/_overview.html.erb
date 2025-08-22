@@ -1,0 +1,33 @@
+<div class="overview-cards">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= l(:label_project_plural) %></div>
+      <div class="card-value" id="total-projects"><%= @statistics.total_projects %></div>
+    </div>
+    <div class="card-icon projects"></div>
+  </div>
+  
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= l(:label_issue_plural) %></div>
+      <div class="card-value" id="total-issues"><%= @statistics.total_issues %></div>
+    </div>
+    <div class="card-icon issues"></div>
+  </div>
+  
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= l(:label_user_plural) %></div>
+      <div class="card-value" id="total-users"><%= @statistics.total_users %></div>
+    </div>
+    <div class="card-icon users"></div>
+  </div>
+  
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= l(:label_spent_time) %></div>
+      <div class="card-value" id="total-time"><%= format_time_duration(@statistics.total_time_spent) %></div>
+    </div>
+    <div class="card-icon time"></div>
+  </div>
+</div>
