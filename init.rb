@@ -9,8 +9,11 @@ Redmine::Plugin.register :redmine_dashboard_pro do
   # Register XLSX MIME type
   Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
 
+  menu :top_menu, :dashboard, { :controller => 'dashboard', :action => 'index' },
+    :caption => :label_dashboard, :first => true
+
   menu :project_menu, :dashboard, { :controller => 'dashboard', :action => 'project' },
-     :caption => :label_dashboard, :after => :activity, :param => :id
+    :caption => :label_dashboard, :after => :activity, :param => :id
 
   # Permissions
   project_module :dashboard do
