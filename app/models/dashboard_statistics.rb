@@ -213,19 +213,19 @@ class DashboardStatistics
   private
   
   def issues_scope
-    if @project
-      @project.issues
-    else
-      Issue.visible
-    end
+    scope = Issue.visible
+    return scope unless @project
+
+    project_ids = @project.self_and_descendants.pluck(:id)
+    scope.where(project_id: project_ids)
   end
   
   def time_entries_scope
-    if @project
-      @project.time_entries
-    else
-      TimeEntry.visible
-    end
+    scope = TimeEntry.visible
+    return scope unless @project
+
+    project_ids = @project.self_and_descendants.pluck(:id)
+    scope.where(project_id: project_ids)
   end
   
   def calculate_remaining_hours
