@@ -16,7 +16,7 @@ Redmine::Plugin.register :redmine_dashboard_pro do
     :caption => :label_dashboard, :after => :activity, :param => :id
 
   # Permissions
-  project_module :dashboard_module do
+  project_module :dashboard do
     permission :view_dashboard, { :dashboard => [:index] }
   end
 end
