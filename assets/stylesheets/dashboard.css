@@ -99,6 +99,7 @@ body.controller-dashboard #main-menu ul {
   transition: background 0.2s ease;
   font-size: 13px;
   cursor: pointer;
+  font-weight: normal !important;
 }
 
 .export-dropdown-item:hover {
